@@ -42,7 +42,10 @@ function checkPrompt(){
 	else{
 		console.log(('Downloading Paper '+ver+'...').gray)
 		let flag = args[0] ?? 'hide'
-		exec('wget '+paper.versions[ver],flag)
+		exec('mkdir ~/mcserver',flag)
+		exec('wget -O server.js -P ~/mcserver/ '+paper.versions[ver],flag)
+		exec('echo java -jar server.js >> ~/mcserver/start.sh',flag)
+		exec('cp ~/mcserver/start.sh ~/mcserver/start.bat',flag)
 		console.log('Paper downloaded successfully!'.green)
 	}
 }
