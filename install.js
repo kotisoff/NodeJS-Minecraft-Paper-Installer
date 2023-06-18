@@ -80,8 +80,8 @@ const checkPrompt = async () => {
             return console.log("Files already exist.")
         }
         await download('../mcserver/server.jar',paper.versions[ver])
-        fs.writeFileSync("../mcserver/start.sh", "java -jar server.jar", e => { });
-        fs.writeFileSync("../mcserver/start.bat", "@echo off\njava -jar server.jar", e => { });
+        fs.writeFileSync("../mcserver/start.sh", "java -jar server.jar\npause", e => { });
+        fs.writeFileSync("../mcserver/start.bat", "@echo off\njava -jar server.jar\npause", e => { });
         console.log(color.green('Paper downloaded successfully!'));
         rl.close()
     }
