@@ -19,12 +19,12 @@ const download = async(dest,url) => {
         https.get(url, res => {
             var stream = res.pipe(file);
             stream.on("drain",()=>{
-                console.log(color.black("Downloaded: "+Math.floor(stream.bytesWritten/1024)+"KB..."))
+                console.log("Downloaded: "+Math.floor(stream.bytesWritten/1024)+"KB...")
                 process.stdout.moveCursor(0,-1)
             })
             stream.on("finish", () => {
                 process.stdout.clearLine()
-                console.log(color.black("Total file size: "+Math.floor(stream.bytesWritten/1024)+"KB"))
+                console.log("Total file size: "+Math.floor(stream.bytesWritten/1024)+"KB")
                 file.close(resolve);
             });
         });
@@ -49,18 +49,18 @@ let color = {
 };
 
 if (!fs.existsSync('./paper-versions.json')) {
-    console.log(color.black("Downloading \"paper-versions.json\"..."))
+    console.log(color.cyan("Downloading \"paper-versions.json\"..."))
     await download("paper-versions.json",paper_versions_url)
 }
 const paper = await JSON.parse(fs.readFileSync("./paper-versions.json"))
 
 console.log(color.green('Paper installer for Termux | v0.1'));
 console.log(color.yellow('Latest paper for now:'), paper.latest);
-console.log(color.black('Leave prompt blank to show versions.'));
-console.log(color.black('Type "exit" or "e" to leave process'));
+console.log(color.cyan('Leave prompt blank to show versions.'));
+console.log(color.cyan('Type "exit" or "e" to leave process'));
 const checkPrompt = async () => {
     let ver = await prompt("Enter version to install: ") ?? "";
-    if (ver == 'exit' || ver == 'e' || ver == null) return
+    if (ver == 'exit' || ver == 'e' || ver == null) return rl.close();
     let text = [], check = false
     for (let v in paper.versions) {
         if (ver == v) check = true
@@ -72,7 +72,7 @@ const checkPrompt = async () => {
         return checkPrompt();
     }
     else {
-        console.log(color.black('Downloading Paper ' + ver + '...'));
+        console.log(color.magenta('Downloading Paper ' + ver + '...'));
         try {
             fs.mkdirSync('../mcserver');
         } catch {
