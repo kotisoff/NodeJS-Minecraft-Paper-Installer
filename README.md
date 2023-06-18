@@ -11,6 +11,10 @@ Using
 
 ##Termux
 
-To install: `cd ~; yes | apt update && yes | apt upgrade; yes | apt install nodejs-lts openjdk-17 wget git; git clone https://github.com/kotisoff/Paper-Installer-for-Termux.git; cd Paper-Installer-for-Termux; npm install; node install.js;cd ..;rm -r Paper-Installer-for-Termux -f`
+Installation
+- Run `cd ~; yes | apt update && yes | apt upgrade; yes | apt install nodejs-lts openjdk-17 wget git; git clone https://github.com/kotisoff/Paper-Installer-for-Termux.git; cd Paper-Installer-for-Termux; node install.js;cd ..;rm -r Paper-Installer-for-Termux -f`
+- Choose your version
 
-To run: `bash ~/mcserver/start.sh`
+Usage
+- Run `bash ~/mcserver/start.sh` or start.sh in ~/mcserver directory
+(You can add `alias mcserver="bash ~/mcserver/start.sh"` in your .bashrc to run server by just typing `mcserver`.

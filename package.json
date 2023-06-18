@@ -1,10 +1,7 @@
 {
-  "name": "paperInstaller",
-  "version": "0.0.1",
-  "main": "main.js",
-  "license": "MIT",
-  "dependencies": {
-    "colors": "^1.4.0",
-    "prompt-sync": "^4.2.0"
-  }
+  "name": "paper-installer",
+  "version": "0.1.0",
+  "author": "KotIsOff",
+  "license": "ISC",
+  "type": "module"
 }
