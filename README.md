@@ -17,4 +17,4 @@ Installation
 
 Usage
 - Run `bash ~/mcserver/start.sh` or start.sh in ~/mcserver directory
-(You can add `alias mcserver="bash ~/mcserver/start.sh"` in your .bashrc to run server by just typing `mcserver`.
+- (You can add `alias mcserver="bash ~/mcserver/start.sh"` in your .bashrc to run server by just typing `mcserver`.
