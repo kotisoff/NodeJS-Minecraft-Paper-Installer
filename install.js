@@ -1,5 +1,5 @@
 // ======= Update URL from here: https://gist.github.com/osipxd/6119732e30059241c2192c4a8d2218d9 ======= //
-const paper_versions_url = "https://gist.githubusercontent.com/osipxd/6119732e30059241c2192c4a8d2218d9/raw/8c0f84a55895d09b2b5aee259d3d207f1814eae1/paper-versions.json"
+const paper_versions_url = "https://gist.githubusercontent.com/osipxd/6119732e30059241c2192c4a8d2218d9/raw/90ba4055686f2d7ca2cdfa98f463bfe7bdf24885/paper-versions.json"
 // ===================================================================================================== //
 
 import fs from "node:fs"
