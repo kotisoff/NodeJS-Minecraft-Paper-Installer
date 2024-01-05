@@ -168,19 +168,19 @@ const checkPrompt = async () => {
   console.log(color.magenta("Downloading Paper " + ver + "..."));
 
   try {
-    fs.mkdirSync("../mcserver");
+    fs.mkdirSync("./mcserver");
   } catch {
     rl.close();
     return console.log("Files already exist.");
   }
-  await download("../mcserver/server.jar", paper.versions[ver]);
+  await download("./mcserver/server.jar", paper.versions[ver]);
   fs.writeFileSync(
-    "../mcserver/start.sh",
+    "./mcserver/start.sh",
     "java -jar server.jar\npause",
     (e) => {}
   );
   fs.writeFileSync(
-    "../mcserver/start.bat",
+    "./mcserver/start.bat",
     "@echo off\njava -jar server.jar\npause",
     (e) => {}
   );
