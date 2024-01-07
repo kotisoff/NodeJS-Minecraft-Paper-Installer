@@ -176,12 +176,12 @@ const checkPrompt = async () => {
   await download("./mcserver/server.jar", paper.versions[ver]);
   fs.writeFileSync(
     "./mcserver/start.sh",
-    "java -jar server.jar\npause",
+    "java -jar server.jar -nogui\npause",
     (e) => {}
   );
   fs.writeFileSync(
     "./mcserver/start.bat",
-    "@echo off\njava -jar server.jar\npause",
+    "@echo off\njava -jar server.jar -nogui\npause",
     (e) => {}
   );
   console.log(color.green("Paper downloaded successfully!"));
