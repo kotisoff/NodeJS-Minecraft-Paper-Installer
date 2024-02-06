@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import https from "node:https";
 import readline from "node:readline";
+import path from "node:path";
 
 console.clear();
 
@@ -9,6 +10,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
+/** @returns { Promise<string> } */
 const prompt = (str) =>
   new Promise((resolve) => {
     rl.question(str, resolve);
@@ -154,7 +156,7 @@ const checkPrompt = async () => {
   console.log(color.yellow("Latest paper:"), paper.latest);
   console.log(color.green("Versions avalible:"), versions.join(", "));
 
-  let ver = (await prompt("Enter version to install: ")) ?? "";
+  let ver = (await prompt(color.yellow("Enter version to install: "))) ?? "";
 
   if (ver == "exit" || ver == "e" || ver == null) return rl.close();
   if (ver == "latest") ver = paper.latest;
@@ -167,24 +169,54 @@ const checkPrompt = async () => {
 
   console.log(color.magenta("Downloading Paper " + ver + "..."));
 
+  const mcserver = "./mcserver_" + ver;
+
+  // Create folder and download server file
+
   try {
-    fs.mkdirSync("./mcserver");
+    fs.mkdirSync(mcserver);
   } catch {
     rl.close();
     return console.log("Files already exist.");
   }
-  await download("./mcserver/server.jar", paper.versions[ver]);
+  await download(path.join(mcserver, "server.jar"), paper.versions[ver]);
+
+  // Create run files
+
   fs.writeFileSync(
-    "./mcserver/start.sh",
-    "java -jar server.jar -nogui\npause",
+    path.join(mcserver, "start.sh"),
+    "java -Xmx1024M -Xms1024M -jar server.jar -nogui\npause",
     (e) => {}
   );
   fs.writeFileSync(
-    "./mcserver/start.bat",
-    "@echo off\njava -jar server.jar -nogui\npause",
+    path.join(mcserver, "start.bat"),
+    "@echo off\njava -Xmx1024M -Xms1024M -jar server.jar -nogui\npause",
     (e) => {}
   );
+
+  // eula
+
+  const eula = `#${new Date()}\neula=true`;
+  const eulaAgreed =
+    (
+      await prompt(
+        color.yellow(
+          "Do you agree with mojang eula? (https://aka.ms/MinecraftEULA) (y/n): "
+        )
+      )
+    ).toLowerCase() == "y";
+  if (eulaAgreed) {
+    fs.writeFileSync(path.join(mcserver, "eula.txt"), eula);
+    console.log(color.green("Eula agreed!"));
+  } else
+    console.log(
+      color.red("Eula disagreed! Agree after server installation next time!")
+    );
+
+  //done
+
   console.log(color.green("Paper downloaded successfully!"));
+  console.log(color.green("Have a great time in the game! :)"));
   rl.close();
 };
 checkPrompt();
