@@ -13,7 +13,7 @@ Usage
 ## Termux
 
 Installation
-- Run `cd ~ && yes | apt update && yes | apt upgrade; yes | apt install nodejs-lts openjdk-17 wget git && git clone https://github.com/kotisoff/NodeJS-Minecraft-Paper-Installer.git mcpaperinstaller && mv ~/mcpaperinstaller/install.mjs ~/ && node install.mjs && rm -r mcpaperinstaller -f`
+- Run `cd ~ && yes | apt update && yes | apt upgrade; yes | apt install nodejs-lts openjdk-17 wget git && git clone https://github.com/kotisoff/NodeJS-Minecraft-Paper-Installer.git mcpaperinstaller && mv ~/mcpaperinstaller/install.mjs ~/ && node install.mjs && rm -r mcpaperinstaller -f && rm install.mjs`
 - Choose your version
 
 Usage
